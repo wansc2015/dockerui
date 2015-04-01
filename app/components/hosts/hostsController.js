@@ -3,6 +3,7 @@ angular.module('hosts', [])
 function($scope, Hosts, ViewSpinner) {
     ViewSpinner.spin();
     Hosts.get({}, function(d) { 
-		$scope.hosts = d; 
+	    $scope.hosts = d; 
+		ViewSpinner.stop();
 	});
 }]);

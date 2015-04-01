@@ -25,7 +25,7 @@ angular.module('dockerui.services', ['ngResource'])
         // Information for docker
         // http://docs.docker.io/en/latest/api/docker_remote_api.html#display-system-wide-information
         return $resource(Settings.url + '/hosts', {}, {
-            get: {method: 'GET'}
+            get: {method: 'GET', isArray: true}
         });
     })
     .factory('ContainerLogs', function($resource, $http, Settings) {

@@ -124,4 +124,21 @@ angular.module('dockerui.filters', [])
             }
             return msg;
         };
+    })
+	.filter('memory', function() {
+        'use strict';
+		// Divide by 1024 to format memory
+        return function(data) {
+			var units = ["B", "K", "M", "G", "T"];
+			var level = 0;
+			while (data > 1024 && level < units.length) {
+				data = data / 1024;
+				level ++;				
+			}
+			if (level == units.length) {
+				data = data * 1024
+				level --;
+			}
+			return Math.round(data) + units[level];			
+        };
     });

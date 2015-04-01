@@ -4,8 +4,8 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>ID</th>
             <th>Name</th>
+            <th>Operating System</th>
             <th>Containers</th>
             <th>IP</th>
             <th>CPU</th>
@@ -14,12 +14,12 @@
     </thead>
     <tbody>
         <tr ng-repeat="host in hosts">
-            <td>{{ host.ID}}</td>
-            <td>{{ host.Name}}</td>
-            <td>{{ host.Containers }}</a></td>
+            <td title="{{host.ID}}">{{ host.Name}}</td>
+			<td>{{ host.OperatingSystem }}</td>
+            <td>{{ host.Containers }}</td>
             <td>{{ host.IP}}</td>
-            <td>{{ host.CPU }}</td>
-            <td>{{ host.Memory }}</span></td>
+            <td>{{ host.NCPU }}</td>
+            <td>{{ host.MemTotal|memory}}</td>
         </tr>
     </tbody>
 </table>
