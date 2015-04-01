@@ -20,6 +20,14 @@ angular.module('dockerui.services', ['ngResource'])
             rename: {method: 'POST', params: {id: '@id', action: 'rename'}, isArray: false}
         });
     })
+    .factory('Hosts', function($resource, Settings) {
+        'use strict';
+        // Information for docker
+        // http://docs.docker.io/en/latest/api/docker_remote_api.html#display-system-wide-information
+        return $resource(Settings.url + '/hosts', {}, {
+            get: {method: 'GET'}
+        });
+    })
     .factory('ContainerLogs', function($resource, $http, Settings) {
         'use strict';
         return {

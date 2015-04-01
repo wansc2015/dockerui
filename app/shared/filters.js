@@ -81,6 +81,20 @@ angular.module('dockerui.filters', [])
             return name.substring(1, name.length);
         };
     })
+    .filter('shortcontainername', function() {
+        'use strict';
+        return function(container) {
+            var name = container.Names[0];
+            return name.substring(name.indexOf("/", 1) + 1, name.length);
+        };
+    })
+    .filter('hostname', function() {
+        'use strict';
+        return function(container) {
+            var name = container.Names[0];
+			return name.substring(1, name.indexOf("/", 1));
+        };
+    })
     .filter('repotag', function() {
         'use strict';
         return function(image) {

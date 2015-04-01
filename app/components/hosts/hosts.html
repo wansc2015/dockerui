@@ -1,0 +1,25 @@
+
+<h2>Hosts</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Containers</th>
+            <th>IP</th>
+            <th>CPU</th>
+            <th>Memory</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="host in hosts">
+            <td>{{ host.ID}}</td>
+            <td>{{ host.Name}}</td>
+            <td>{{ host.Containers }}</a></td>
+            <td>{{ host.IP}}</td>
+            <td>{{ host.CPU }}</td>
+            <td>{{ host.Memory }}</span></td>
+        </tr>
+    </tbody>
+</table>
