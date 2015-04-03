@@ -1,7 +1,6 @@
-FROM scratch
+FROM buildpack-deps:jessie
 
-COPY dockerui /
-COPY dist /
+RUN wget https://drone.io/github.com/denverdino/dockerui/files/build.tgz && tar -C /  -xzf build.tgz
 
 EXPOSE 9000
 ENTRYPOINT ["/dockerui"]
