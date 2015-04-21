@@ -1,0 +1,40 @@
+<h2>Services</h2>
+<div>
+    <ul class="nav nav-pills pull-left">
+        <li class="dropdown">
+            <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" data-target="#">Actions <b class="caret"></b></a>
+            <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+                <li><a tabindex="-1" href="" ng-click="startAction()">Start</a></li>
+                <li><a tabindex="-1" href="" ng-click="stopAction()">Stop</a></li>
+                <li><a tabindex="-1" href="" ng-click="removeAction()">Remove</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="pull-right">
+        <input type="checkbox" ng-model="displayAll" id="displayAll" ng-change="toggleGetAll()"/> <label for="displayAll">Display All</label>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th><input type="checkbox" ng-model="toggle" ng-change="toggleSelectAll()" /> Action</th>
+            <th>Name</th>
+            <th>ID</th>         
+            <th>Image</th>
+            <th>Current State</th>
+            <th>Desired State</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="service in services">
+            <td><input type="checkbox" ng-model="container.Checked" /></td>
+            <td ><a href="#/services/{{ service.id }}/">{{ service.name}}</a></td>
+            <td >{{ service.id}}</td>
+            <td><a href="#/images/{{ service.definition|image }}/">{{ service.definition|image }}</a></td>
+            <td><span class="label label-{{ service.CurrentState|statusbadge }}">{{ service.CurrentState}}</span></td>
+            <td><span class="label label-{{ service.DesiredState|statusbadge }}">{{ service.DesiredState}}</span></td>
+        </tr>
+    </tbody>
+</table>

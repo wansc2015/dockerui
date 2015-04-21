@@ -21,12 +21,30 @@ angular.module('dockerui.filters', [])
     .filter('statusbadge', function() {
         'use strict';
         return function(text) {
+            if (text == null) {
+                return '';
+            }
             if (text === 'Ghost') {
                 return 'important';
             } else if (text.indexOf('Exit') !== -1 && text !== 'Exit 0') {
                 return 'warning';
             }
             return 'success';
+        };
+    })
+    .filter('endpoint', function() {
+        'use strict';
+        return function(endpoint) {
+            if (endpoint == null) {
+                return '';
+            }
+            var endpointStr = endpoint.protocol + "://" + endpoint.virtualHost;
+            if ((endpoint.protocol == "http" && endpoint.port == "80") 
+                ||(endpoint.protocol == "https" && endpoint.port == "443") 
+                || endpoint.port == null) {
+                return endpointStr;
+            };
+            return endpointStr + ":" + endpoint.port;
         };
     })
     .filter('getstatetext', function() {
@@ -92,7 +110,13 @@ angular.module('dockerui.filters', [])
         'use strict';
         return function(container) {
             var name = container.Names[0];
-			return name.substring(1, name.indexOf("/", 1));
+            return name.substring(1, name.indexOf("/", 1));
+        };
+    })
+    .filter('image', function() {
+        'use strict';
+        return function(definition) {
+            return definition.image;
         };
     })
     .filter('repotag', function() {
@@ -125,20 +149,20 @@ angular.module('dockerui.filters', [])
             return msg;
         };
     })
-	.filter('memory', function() {
+    .filter('memory', function() {
         'use strict';
-		// Divide by 1024 to format memory
+        // Divide by 1024 to format memory
         return function(data) {
-			var units = ["B", "K", "M", "G", "T"];
-			var level = 0;
-			while (data > 1024 && level < units.length) {
-				data = data / 1024;
-				level ++;				
-			}
-			if (level == units.length) {
-				data = data * 1024
-				level --;
-			}
-			return Math.round(data) + units[level];			
+            var units = ["B", "K", "M", "G", "T"];
+            var level = 0;
+            while (data > 1024 && level < units.length) {
+                data = data / 1024;
+                level ++;               
+            }
+            if (level == units.length) {
+                data = data * 1024
+                level --;
+            }
+            return Math.round(data) + units[level];         
         };
     });

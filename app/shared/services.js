@@ -28,6 +28,15 @@ angular.module('dockerui.services', ['ngResource'])
             get: {method: 'GET', isArray: true}
         });
     })
+    .factory('DockerService', function($resource, Settings) {
+        'use strict';       
+        return $resource(Settings.url + '/services/:id/:action', {}, {
+            // To-do: Add id as "/" to make sure access url is /services/ as a temp solution
+            query: {method: 'GET', isArray: true, params:{id: '/'}},
+            get: {method: 'GET'},
+            scale: {method: 'POST', params: {id: '@id', action:'scale'}}
+        });
+    })
     .factory('ContainerLogs', function($resource, $http, Settings) {
         'use strict';
         return {

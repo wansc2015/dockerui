@@ -1,0 +1,36 @@
+<div id="scale-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Scale Container</h3>
+            </div>
+            <div class="modal-body">
+                <!--<div id="editor"></div>-->
+                <p>{{ messages }}</p>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4">Scale type</td>
+                            <td>
+                                <select ng-model="scaleConfig.type" class="form-control">
+                                    <option value="scale_out">Scale out</option>
+                                    <option value="scale_in">Scale in</option>
+                                    <option value="scale_to">Scale to</option>
+                                <select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">Container number</td>
+                            <td><input type="text" ng-model="scaleConfig.number" class="form-control"></input></td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="scale()">Scale</button>
+                <!--<button class="btn btn-warning" ng-click="cancel()">Cancel</button>-->
+            </div>
+        </div>
+    </div>
+</div>

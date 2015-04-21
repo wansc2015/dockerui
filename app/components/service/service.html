@@ -1,0 +1,109 @@
+<div ng-include="template" ng-controller="ScaleDialogController"></div>
+
+<div class="detail">
+    
+    <div>
+        <h4>Service: {{ service.name }}
+            <!--<button class="btn btn-primary"
+                    ng-click="service.edit = true;">Rename</button>-->
+        </h4>
+    </div>
+    
+    <div class="btn-group detail">
+      <button class="btn btn-success"
+            ng-click="start()"
+            ng-show="!service.CurrentState.Running">Start</button>
+      <button class="btn btn-warning"
+            ng-click="stop()"
+            ng-show="service.CurrentState.lauching">Stop</button>
+      <button class="btn btn-danger"
+            ng-click="kill()"
+            ng-show="service.State.Running && !service.State.Paused">Kill</button>
+      <button class="btn btn-info"
+            ng-click="pause()"
+            ng-show="service.State.Running && !service.State.Paused">Pause</button>
+      <button class="btn btn-success"
+            ng-click="unpause()"
+            ng-show="service.State.Running && service.State.Paused">Unpause</button>
+	  <button class="btn btn-info"
+            ng-click="scaleAction()">Scale</button>
+    </div>
+
+    <table class="table table-striped">
+         <tbody>
+            <tr>
+                <td>ID:</td>
+                <td>{{ service.id }}</td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>{{ service.name }}</td>
+            </tr>
+            <tr>
+                <td>Current State:</td>
+                <td><span class="label label-{{ service.CurrentState|statusbadge }}">{{ service.CurrentState}}</span></td>
+            </tr>
+            <tr>
+                <td>Desired State: </td>
+                <td><span class="label label-{{ service.DesiredState|statusbadge }}">{{ service.DesiredState}}</span></td>                
+            </tr>
+            <tr>
+                <td>Environment:</td>
+                <td>
+                    <ul style="display:inline-table">
+                        <li ng-repeat="k in service.definition.environment">{{ k }}</li>
+                    </ul>
+                </td>
+            </tr>
+			<tr>
+                <td>Ports:</td>
+				<td>
+                    <ul style="display:inline-table">
+                        <li ng-repeat="port in service.definition.ports">
+                            {{ port }}
+                        </li>
+                    </ul>
+                </td>
+			</tr>
+			<tr>
+                <td>Volumes:</td>
+                <td><ul style="display:inline-table">
+                        <li ng-repeat="k in service.definition.volumes">{{ k }}</li>
+                    </ul>
+				</td>
+            </tr>
+			<tr>
+                <td>Image:</td>
+                <td><a href="#/images/{{ service.definition.image }}/">{{ service.definition.image }}</a></td>
+            </tr>
+            <tr>
+                 <td>Logs:</td>
+                 <td>
+                    <ul style="display:inline-table">
+                        <li ng-repeat="k in service.extensions.logs">{{ k }}</li>
+                    </ul>
+                </td>
+            </tr>
+			<tr>
+                 <td>Container number:</td>
+                 <td>{{ service.extensions.scale }}</a></td>
+            </tr>
+			<tr>
+                <td>Hostname:</td>
+                <td>{{ service.extensions.dns.host_name }}</td>
+            </tr>
+			<tr>
+                 <td>Endpoint:</td>
+                 <td><ul style="display:inline-table">
+                        <li ng-repeat="k in service.extensions.routing">
+                            {{k|endpoint}}
+                        </li>
+                    </ul>
+				</td>
+            </tr>
+        </tbody>
+    </table>
+   
+    <hr />
+    
+</div>

@@ -1,4 +1,6 @@
-angular.module('dockerui', ['dockerui.templates', 'ngRoute', 'dockerui.services', 'dockerui.filters', 'masthead', 'footer', 'dashboard', 'container', 'containers', 'images', 'image', 'hosts', 'startContainer', 'sidebar', 'info', 'builder', 'containerLogs'])
+angular.module('dockerui', ['dockerui.templates', 'ngRoute', 'dockerui.services', 'dockerui.filters', 'masthead', 'footer', 'dashboard', 
+'container', 'containers', 'dockerServices', 'dockerService', 'images', 'image', 'hosts', 'startContainer', 'sidebar', 'info', 
+'builder', 'containerLogs', 'dockerui.dialogs'])
     .config(['$routeProvider', function ($routeProvider) {
         'use strict';
         $routeProvider.when('/', {templateUrl: 'app/components/dashboard/dashboard.html', controller: 'DashboardController'});
@@ -7,6 +9,8 @@ angular.module('dockerui', ['dockerui.templates', 'ngRoute', 'dockerui.services'
         $routeProvider.when('/containers/:id/logs/', {templateUrl: 'app/components/containerLogs/containerlogs.html', controller: 'ContainerLogsController'});
         $routeProvider.when('/images/', {templateUrl: 'app/components/images/images.html', controller: 'ImagesController'});
         $routeProvider.when('/hosts/', {templateUrl: 'app/components/hosts/hosts.html', controller: 'HostsController'});
+        $routeProvider.when('/services/', {templateUrl: 'app/components/services/services.html', controller: 'ServicesController'});
+        $routeProvider.when('/services/:id/', {templateUrl: 'app/components/service/service.html', controller: 'ServiceController'});
         $routeProvider.when('/images/:id*/', {templateUrl: 'app/components/image/image.html', controller: 'ImageController'});
         $routeProvider.when('/info', {templateUrl: 'app/components/info/info.html', controller: 'InfoController'});
         $routeProvider.otherwise({redirectTo: '/'});
