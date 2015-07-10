@@ -80,22 +80,22 @@
                  <td>Logs:</td>
                  <td>
                     <ul style="display:inline-table">
-                        <li ng-repeat="k in service.extensions.logs">{{ k }}</li>
+                        <li ng-repeat="k in service.definition.logs">{{ k }}</li>
                     </ul>
                 </td>
             </tr>
 			<tr>
                  <td>Container number:</td>
-                 <td>{{ service.extensions.scale }}</a></td>
+                 <td>{{ service.definition.scale }}</a></td>
             </tr>
 			<tr>
                 <td>Hostname:</td>
-                <td>{{ service.extensions.dns.host_name }}</td>
+                <td>{{ service.definition.dns_entry.host_name }}</td>
             </tr>
 			<tr>
                  <td>Endpoint:</td>
                  <td><ul style="display:inline-table">
-                        <li ng-repeat="k in service.extensions.routing">
+                        <li ng-repeat="k in service.definition.routing">
                             {{k|endpoint}}
                         </li>
                     </ul>

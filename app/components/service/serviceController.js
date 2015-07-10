@@ -2,7 +2,7 @@ angular.module('dockerService', [])
 .controller('ServiceController', ['$scope', '$routeParams', '$location', 'DockerService', 'Messages', 'ViewSpinner',
 function($scope, $routeParams, $location, DockerService, Messages, ViewSpinner) {
     $scope.changes = {
-        "extensions.scale": false
+        "definition.scale": false
     }
     
     $scope.getChanges = function(originalData, newData) {
@@ -21,8 +21,8 @@ function($scope, $routeParams, $location, DockerService, Messages, ViewSpinner) 
     $scope.display = function() {
         ViewSpinner.spin();
         DockerService.get({id: $routeParams.id}, function(d) {   
-            if (d.extensions.scale == null) {
-                d.extensions.scale = 1;
+            if (d.definition.scale == null) {
+                d.definition.scale = 1;
             }       
             //$scope.getChanges($scope.service, d);
             $scope.service = d;
